@@ -19,6 +19,20 @@ Plataforma monolítica modular (Spring Boot 4, Java 21) para gestión de eventos
 - Perfil `local`: nada extra (H2 en memoria, bus en memoria, seed)
 - Perfil `rabbitmq`: PostgreSQL 15+, Redis 7+ y RabbitMQ 3.x (+ el orquestador para el flujo completo)
 
+## Docker (dependencias externas)
+
+Contenedores independientes (puedes arrancarlos por separado o juntos):
+
+```bash
+# rabbitmq
+docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4-management
+
+# redis
+docker run -d --name redis -p 6379:6379 redis:7-alpine
+```
+
+Panel de gestión de RabbitMQ: <http://localhost:15672/#/queues> (usuario/contraseña: `guest`/`guest`). Ahí puedes inspeccionar los exchanges (`ticketwave.events`, `ticketwave.commands`), las colas (`ticketwave.events.all`, `ticketwave.commands.all`) y los mensajes publicados.
+
 ## Perfiles
 
 | Perfil      | Base de datos | Bus                       | Seeder | Uso                  |
