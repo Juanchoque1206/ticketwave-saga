@@ -1,0 +1,35 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: ticketwave-orchestrator
+  rabbitmq:
+    host: ${RABBIT_HOST:localhost}
+    port: ${RABBIT_PORT:5672}
+    username: ${RABBIT_USERNAME:guest}
+    password: ${RABBIT_PASSWORD:guest}
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      repositories:
+        enabled: false
+
+ticketwave:
+  bus:
+    event-queue: ${TICKETWAVE_EVENT_QUEUE:ticketwave.events.all.orchestrator}
+    command-queue: ${TICKETWAVE_COMMAND_QUEUE:ticketwave.commands.all.orchestrator}
+  saga:
+    recovery-enabled: ${SAGA_RECOVERY_ENABLED:true}
+    recovery-interval-ms: ${SAGA_RECOVERY_INTERVAL_MS:30000}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+logging:
+  level:
+    com.ticketwave: INFO
