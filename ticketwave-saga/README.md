@@ -2,6 +2,27 @@
 
 Plataforma monolítica modular (Spring Boot 4, Java 21) para gestión de eventos y venta de tickets con un flujo unificado de **reserva + compra** basado en `TicketOrder`. El flujo de compra es orquestado por un **saga** que corre en un servicio separado ([`ticketwave-orchestrator`](../ticketwave-orchestrator)); este módulo publica eventos de dominio y ejecuta los comandos que el saga envía.
 
+## Architecture Diagrams
+
+Documentation diagrams (SVG, editable in draw.io):
+
+### C4 model — `diagrams/c4model/`
+
+![C2 c4model diagram](./diagrams/c4model/ticketwave-c2-container.drawio.svg)
+
+| Level | File | Description |
+|-------|------|-------------|
+| C1 | `ticketwave-c1-context.drawio.svg` | System context: users and external systems around TicketWave |
+| C2 | `ticketwave-c2-container.drawio.svg` | Containers: web/API, monolith, database, Redis |
+| C3 | `ticketwave-c3-event-search.drawio.svg` | Component: event search |
+| C3 | `ticketwave-c3-digital-ticket-service.drawio.svg` | Component: digital ticket service |
+| C3 | `ticketwave-c3-ticket-purchase.drawio.svg` | Component: ticket purchase flow |
+| C3 | `ticketwave-c3-payment-service.drawio.svg` | Component: payment service |
+| C3 | `ticketwave-c3-promotions-service.drawio.svg` | Component: promotions service |
+| C3 | `ticketwave-c3-notifications-service.drawio.svg` | Component: notifications service |
+| C3 | `ticketwave-c3-refunds-cancellations.drawio.svg` | Component: refunds & cancellations |
+
+
 ## Tecnologías
 
 - **Java 21** · **Spring Boot 4** · Maven 3.9+
